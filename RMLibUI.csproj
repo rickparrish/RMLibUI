@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{01C2C32E-3FC5-4241-9725-D84AF6620D78}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RandM.RMLibUI</RootNamespace>
+    <AssemblyName>RMLibUI</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllButGlobalizationRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Y:\Program Files (x86)\Microsoft Visual Studio 11.0\Team Tools\Static Analysis Tools\Rule Sets\AllButGlobalizationRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>RMLibUI.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoUpdateUI.cs" />
+    <Compile Include="Dialog.cs" />
+    <Compile Include="DownloadFileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExtensionAttribute.cs" />
+    <Compile Include="InputBoxDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListViewGroupHeaderSorter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RichTextBoxExtensions.cs" />
+    <Compile Include="SecureInputBoxDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SecureTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TablessTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ToolStripSpringTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RMLib\RMLib.csproj">
+      <Project>{C57F0D98-F290-42C1-97BD-CD85B47A2FB4}</Project>
+      <Name>RMLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SecureInputBoxDialog.resx">
+      <DependentUpon>SecureInputBoxDialog.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RMLibUI.pfx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
