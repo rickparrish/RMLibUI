@@ -22,55 +22,81 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using RandM.RMLib;
+
+/* Sample Usage
+        private void ListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ListView LV = (ListView)sender;
+            if (LV.ListViewItemSorter == null) LV.ListViewItemSorter = new ListViewItemSorter();
+            
+            ListViewItemSorter LVIS = ((ListViewItemSorter)LV.ListViewItemSorter);
+            LVIS.IgnoreCase = true;
+            LVIS.SortAsInt = ((LV.Columns[e.Column].Tag != null) && (LV.Columns[e.Column].Tag.ToString() == "int"));
+            LVIS.ColumnClick(e.Column);
+            
+            LV.Sort();
+        }
+*/
 
 namespace RandM.RMLibUI
 {
     public class ListViewItemSorter : IComparer
     {
-        private int _ColumnIndex;
-        private bool _IgnoreCase;
-        private SortOrder _SortOrder = SortOrder.Ascending;
+        public int ColumnIndex { get; set; }
+        public bool IgnoreCase { get; set; }
+        public bool SortAsInt { get; set; }
+        public SortOrder SortOrder { get; set; }
 
         public ListViewItemSorter()
         {
-            _ColumnIndex = 0;
-            _IgnoreCase = true;
+            ColumnIndex = 0;
+            IgnoreCase = true;
+            SortAsInt = false;
+            SortOrder = SortOrder.None;
         }
-        public ListViewItemSorter(int columnIndex)
-        {
-            _ColumnIndex = columnIndex;
-            _IgnoreCase = true;
-        }
-        public ListViewItemSorter(bool ignoreCase)
-        {
-            _ColumnIndex = 0;
-            _IgnoreCase = ignoreCase;
-        }
-        public ListViewItemSorter(int columnIndex, bool ignoreCase)
-        {
-            _ColumnIndex = columnIndex;
-            _IgnoreCase = ignoreCase;
-        }
-
+        
         public void ColumnClick(int columnIndex)
         {
-            if (columnIndex == _ColumnIndex)
+            if (columnIndex == ColumnIndex)
             {
-                _SortOrder = (_SortOrder == SortOrder.Ascending) ? SortOrder.Descending : SortOrder.Ascending;
+                SortOrder = (SortOrder == SortOrder.Descending) ? SortOrder.Ascending : SortOrder.Descending;
             }
             else
             {
-                _ColumnIndex = columnIndex;
-                _SortOrder = SortOrder.Ascending;
+                ColumnIndex = columnIndex;
+                SortOrder = SortOrder.Ascending;
             }
         }
 
         public int Compare(object x, object y)
         {
-            int Result = String.Compare(((ListViewItem)x).SubItems[_ColumnIndex].Text, ((ListViewItem)y).SubItems[_ColumnIndex].Text, _IgnoreCase);
+            int Result = 0;
+
+            if (SortAsInt)
+            {
+                int A = StringUtils.StrToIntDef(((ListViewItem)x).SubItems[ColumnIndex].Text, int.MinValue);
+                int B = StringUtils.StrToIntDef(((ListViewItem)y).SubItems[ColumnIndex].Text, int.MinValue);
+                if (A < B)
+                {
+                    Result = -1;
+                }
+                else if (A == B)
+                {
+                    Result = 0;
+                }
+                else if (A > B)
+                {
+                    Result = 1;
+                }
+            }
+            else
+            {
+                Result = String.Compare(((ListViewItem)x).SubItems[ColumnIndex].Text, ((ListViewItem)y).SubItems[ColumnIndex].Text, IgnoreCase);
+            }
             
             // Flip result if descending order
-            if (_SortOrder == SortOrder.Descending) Result *= -1;
+            if (SortOrder == SortOrder.Descending) Result *= -1;
 
             return Result;
         }
