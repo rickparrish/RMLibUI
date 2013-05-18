@@ -34,7 +34,7 @@ namespace RandM.RMLibUI
                 if (Dialog.YesNo("A new version of " + ProcessUtils.ProductName + " is available!" + Environment.NewLine + Environment.NewLine + "Your version: " + ProcessUtils.ProductVersion + Environment.NewLine + "New version: " + AutoUpdate.Version + Environment.NewLine + Environment.NewLine + AutoUpdate.Comments + Environment.NewLine + Environment.NewLine + "Do you want to download and install the newest version?" + Environment.NewLine + "(Doing so will close " + ProcessUtils.ProductName + ")", "New Version Available!") == DialogResult.Yes)
                 {
                     string DownloadFile = StringUtils.PathCombine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Application.CompanyName, Path.GetFileName(AutoUpdate.Url.ToString()));
-                    using (frmRMFileDownloader FD = new frmRMFileDownloader(AutoUpdate.Url, DownloadFile))
+                    using (frmRMFileDownloader FD = new frmRMFileDownloader(new Uri(AutoUpdate.Url), DownloadFile))
                     {
                         if (FD.ShowDialog() == DialogResult.OK)
                         {
