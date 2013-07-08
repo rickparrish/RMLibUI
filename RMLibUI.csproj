@@ -53,6 +53,7 @@
     <Compile Include="InputBoxDialog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="JpegUtils.cs" />
     <Compile Include="ListViewGroupHeaderSorter.cs" />
     <Compile Include="ListViewItemSorter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
