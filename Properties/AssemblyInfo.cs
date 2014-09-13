@@ -1,6 +1,6 @@
 ﻿/*
   RMLibUI: Visual support classes/components used by multiple R&M Software programs
-  Copyright (C) 2008-2013  Rick Parrish, R&M Software
+  Copyright (C) 2008-2014  Rick Parrish, R&M Software
 
   This file is part of RMLibUI.
 
@@ -31,7 +31,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("R&M Software")]
 [assembly: AssemblyProduct("RMLibUI")]
-[assembly: AssemblyCopyright("Copyright ©  2008-2013")]
+[assembly: AssemblyCopyright("Copyright ©  2008-2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
