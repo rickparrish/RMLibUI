@@ -55,6 +55,15 @@ namespace RandM.RMLibUI
         }
 
 
+        static public string NumericInputBox(string prompt, string caption, string defaultText)
+        {
+            using (NumericInputBox NIB = new NumericInputBox(prompt, caption, defaultText))
+            {
+                NIB.ShowDialog();
+                return NIB.InputText;
+            }
+        }
+
         public static DialogResult OKCancel(string text, string caption)
         {
             return MessageBox.Show(text, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, 0, false);
