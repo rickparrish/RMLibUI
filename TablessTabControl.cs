@@ -19,6 +19,7 @@
 */
 using System;
 using System.Collections.Generic;
+using System.Security.Permissions;
 using System.Text;
 using System.Windows.Forms;
 
@@ -26,6 +27,7 @@ namespace RandM.RMLibUI
 {
     public class TablessTabControl : TabControl
     {
+        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
         protected override void WndProc(ref Message m)
         {
             // Hide tabs by trapping the TCM_ADJUSTRECT message
